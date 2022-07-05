@@ -31,7 +31,7 @@ public class JwtTokenUtil {
     private static Algorithm algorithm = Algorithm.HMAC256(SECRET_KEY);
 
     public static String generateAccessToken(User user, HttpServletRequest request){
-
+        log.info("Generate Access Token for username : {}", user.getUsername());
         return JWT.create()
                 .withSubject(user.getUsername())
                 .withExpiresAt(new Date(System.currentTimeMillis() + 1*60*1000))
@@ -43,6 +43,7 @@ public class JwtTokenUtil {
     }
 
     public static String generateRefreshToken(User user, HttpServletRequest request){
+        log.info("Generate Refresh Token for username : {}", user.getUsername());
         return JWT.create()
                 .withSubject(user.getUsername())
                 .withExpiresAt(new Date(System.currentTimeMillis() + 30*60*1000))
