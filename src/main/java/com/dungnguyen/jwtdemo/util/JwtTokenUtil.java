@@ -52,6 +52,7 @@ public class JwtTokenUtil {
     }
 
     public static DecodedJWT verifyToken(String token){
+        log.info("Verify Token");
         JWTVerifier verifier = JWT.require(algorithm).build();
         return verifier.verify(token);
     }
